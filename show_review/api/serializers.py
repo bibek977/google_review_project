@@ -10,3 +10,6 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviews
         fields = "__all__"
+
+class SearchDataSerializer(serializers.Serializer):
+    title = models.CharField(max_length=200)
