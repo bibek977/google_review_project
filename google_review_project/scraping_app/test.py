@@ -22,23 +22,24 @@ load_dotenv()
 url = "https://www.google.com/maps/@27.6879306,85.3226581,14z?hl=en&entry=ttu"
 
 class Driver:
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    driver.maximize_window()
-    driver.get(url)
+    def __init__(self,url):
+        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        self.driver.maximize_window()
+        self.driver.get(url)
 
-    wait = WebDriverWait(driver,30)
+        self.wait = WebDriverWait(self.driver,30)
 
-    def get_search(name):
+    def get_search(self,name):
         try:
-            Driver.wait.until(EC.presence_of_element_located((By.XPATH,'//input[@name="q"]')))
-            search_input = Driver.driver.find_element(By.XPATH,'//input[@name="q"]')
+            self.wait.until(EC.presence_of_element_located((By.XPATH,'//input[@name="q"]')))
+            search_input = self.driver.find_element(By.XPATH,'//input[@name="q"]')
             search_input.click()
             # Driver.driver.find_element(By.XPATH,'//input[@name="q"]').send_keys(name)
             search_input.send_keys(name)
             search_input.send_keys(Keys.ENTER)
 
-            Driver.wait.until(EC.presence_of_all_elements_located((By.XPATH,"//div[@role='feed']/div/div/a")))
-            search_result = Driver.driver.find_elements(By.XPATH,"//div[@role='feed']/div/div/a")
+            self.wait.until(EC.presence_of_all_elements_located((By.XPATH,"//div[@role='feed']/div/div/a")))
+            search_result = self.driver.find_elements(By.XPATH,"//div[@role='feed']/div/div/a")
 
             search_results = {}
 
@@ -86,4 +87,5 @@ class Driver:
 #     json.dump(maps,f)
 
 # Driver.get_search("kfc")
-Driver.get_search("pathao")
+# d = Driver(url=url)
+# d.get_search("pathao")

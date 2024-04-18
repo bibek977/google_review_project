@@ -11,6 +11,8 @@ import io
 from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 
+from google_review_project.scraping_app.test import *
+
 class ReviewApi(views.APIView):
     def get(self,request):
         company = CompanyName.objects.all()
@@ -32,7 +34,10 @@ class SearchDataApi(View):
         serializer = SearchDataSerializer(data=python_data)
 
         if serializer.is_valid():
-            print(5)  #replace with the function
+            url = "https://www.google.com/maps/@27.6879306,85.3226581,14z?hl=en&entry=ttu"
+            d = Driver(url=url)
+            d.get_search(python_data['title'])
+
             response = {
                 'title' : python_data,
                 'status' : status.HTTP_302_FOUND
