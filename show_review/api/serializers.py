@@ -13,3 +13,6 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class SearchDataSerializer(serializers.Serializer):
     title = models.CharField(max_length=200)
+
+class SearchCompanySerializer(serializers.Serializer):
+    link = models.TextField()

@@ -75,6 +75,7 @@ class Driver:
             # return search_results
             with open("maps.json","w") as f:
                 json.dump(search_results,f)
+            return search_results
 
         except Exception as e:
             print(e)

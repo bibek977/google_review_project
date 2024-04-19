@@ -18,12 +18,8 @@ import os
 
 load_dotenv()
 
-# url:str = os.getenv('url')
 
-url = "https://www.google.com/maps/place/IMS+SMart+-+Samsung+Authorised+Showroom/data=!4m7!3m6!1s0x39eb1906b6cf1dcb:0x4bc89068aeb295da!8m2!3d27.7100586!4d85.319782!16s%2Fg%2F1vrq81d7!19sChIJyx3PtgYZ6zkR2pWyrmiQyEs?authuser=0&hl=en&rclk=1"
-
-
-class Driver:
+class Company:
     def __init__(self,url):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.driver.maximize_window()
@@ -31,9 +27,12 @@ class Driver:
 
         self.wait = WebDriverWait(self.driver,30)
 
-    def reviewRelevant(self):
+    def reviewRelevant(self,company_id):
 
         try:
+            self.wait.until(EC.presence_of_element_located((By.XPATH,"//h1/span/parent::h1")))
+            company = self.driver.find_element(By.XPATH,"//h1/span/parent::h1").text
+
             self.wait.until(EC.presence_of_element_located((By.XPATH, '//button[contains(@aria-label,"Reviews for")]')))
             button = self.driver.find_element(By.XPATH, '//button[contains(@aria-label,"Reviews for")]')
             button.click()
@@ -66,7 +65,7 @@ class Driver:
 
             if reviews is not None:
             
-                review = {}
+                review = []
                 for i in reviews:
 
                     image = i.find_element(By.XPATH,'div/div/div/button/img').get_attribute('src')
@@ -80,7 +79,8 @@ class Driver:
                     stars = i.find_element(By.XPATH,'div/div/div[4]/div[1]/span[1]').get_attribute('aria-label')
                     date = i.find_element(By.XPATH,'div/div/div[4]/div[1]/span[2]').text
 
-                    review[name] = {"name":name,"profile_pic" :  image, "rate" : stars, "date" : date, "review" :  desc}
+                    r = {"name":name,"profile_pic" :  image, "rate" : stars, "date" : date, "review" :  desc, "company" : company_id}
+                    review.append(r)
                 self.driver.back()
                 return review
             print("no reviews")
@@ -92,83 +92,7 @@ class Driver:
             print(e)
             self.driver.quit()
 
-    def getImages(self):
-
-        try:
-            
-            self.wait.until(EC.presence_of_element_located((By.XPATH,'//div[contains(text(),"photos")]/parent::button')))
-
-            photos = self.driver.find_element(By.XPATH,'//div[contains(text(),"photos")]/parent::button')
-            photos.click()
-            time.sleep(5)
-
-            element = self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@aria-label and @role="main"]/div[3]')))
-
-            height = self.driver.execute_script('return arguments[0].scrollHeight;', element)
-            while True:
-                self.driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight;', element)
-                time.sleep(5)
-
-                new_height = self.driver.execute_script('return arguments[0].scrollHeight;', element)
-
-                if height == new_height:
-                    break
-                height = new_height
-
-            image_list = []
-            images = self.driver.find_elements(By.XPATH,'//a[@data-photo-index]/div[@role]')
-
-            for i in images:
-                image = i.get_attribute("style")
-                img = image.split('url("')[1]
-                new_img = img.split('")')[0]
-                if new_img == "//:0":
-                    new_img = "Not avialible"
-                image_list.append(new_img)
-
-            self.driver.back()
-
-            # Title = Driver.driver.title
-
-
-            image_list = [i for i in image_list if i != "Not avialible"]
-            return image_list
-
-            # time.sleep(5)
-            self.driver.quit()
-
-        except Exception as e:
-
-            print(e)
-
-    def getImage(self):
-        try:
-            self.wait.until(EC.presence_of_element_located((By.XPATH,'//div[contains(text(),"photos")]/parent::button')))
-
-            photos = self.driver.find_element(By.XPATH,'//div[contains(text(),"photos")]/parent::button')
-            photos.click()
-            time.sleep(5)
-
-            element = self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@aria-label and @role="main"]/div[3]')))
-            images = self.driver.find_elements(By.XPATH,'//a[@data-photo-index]/div[@role]')
-            if images is not None:
-                image = images[0].get_attribute("style")
-                img = image.split('url("')[1]
-                new_img = img.split('")')[0]
-                if new_img == "//:0":
-                    new_img = "Not avialible"
-
-            else:
-                new_img = "Not avialible"
-
-            self.driver.back()
-            return new_img
-            time.sleep(5)
-            # self.driver.quit()
-
-        except Exception as e:
-            print(e)
-
+    # company_details = {}
     def getPhoto(self):
         try:
             self.wait.until(EC.presence_of_element_located((By.XPATH,"//div[@role='main']/div/div/button[contains(@aria-label,'Photo of')]/img")))
@@ -178,6 +102,10 @@ class Driver:
                 new_img = image.get_attribute("src")
                 return new_img
             new_img = "not avialabel"
+
+            # self.company_details['image'] = new_img
+            # return self.company_details
+
             return new_img
 
         except Exception as e:
@@ -189,7 +117,6 @@ class Driver:
 
         try:
             Title = self.driver.title
-
             return Title
 
         except Exception as e:
@@ -202,6 +129,9 @@ class Driver:
             self.wait.until(EC.presence_of_element_located((By.XPATH,"//h1/span/parent::h1")))
             name = self.driver.find_element(By.XPATH,"//h1/span/parent::h1").text
 
+            # self.company_details['company'] = name
+            # return self.company_details
+
             return name
 
         except Exception as e:
@@ -212,14 +142,20 @@ class Driver:
             self.wait.until(EC.presence_of_element_located((By.XPATH,'//span[contains(@aria-label,"stars") and @role="img"][1]')))
             stars = self.driver.find_element(By.XPATH,'//span[contains(@aria-label,"stars") and @role="img"][1]').get_attribute('aria-label')
 
+
+            return stars
+
+        except Exception as e:
+            print(e)
+
+    def getReviews(self):
+        try:
+
             self.wait.until(EC.presence_of_element_located((By.XPATH,'//span[contains(@aria-label,"reviews")]')))
             total = self.driver.find_element(By.XPATH,'//span[contains(@aria-label,"reviews")]').get_attribute('aria-label')
 
-            return {
-                "stars" : stars,
-                "total" : total
-            }
-        
+            return total
+
         except Exception as e:
             print(e)
 
@@ -229,16 +165,18 @@ class Driver:
             self.wait.until(EC.presence_of_all_elements_located(((By.XPATH,'//div[contains(@aria-label,"Information for")]//button/div/div[2]/div[1]'))))
             data = self.driver.find_elements(By.XPATH,'//div[contains(@aria-label,"Information for")]//button/div/div[2]/div[1]')
 
-            info_list = []
+            info_list = ""
             for i in data:
                 info = i.text
-                info_list.append(info)
+                info_list += ", "+info
+
+            # self.company_details['details'] = info_list
+            # return self.company_details
 
             return info_list
 
         except Exception as e:
             print(e)
-
 
     def quit(self):
 
@@ -247,28 +185,3 @@ class Driver:
 
         except Exception as e:
             print(e)
-
-d = Driver(url=url)
-
-data = {
-
-}
-
-print("********Program started***********")
-data["OfficeInfo"] = d.getOfficeData()
-print("********* Office Data Scraped *************")
-data["Rating"] = d.getRating()
-print("********* Rating Scraped *************")
-data["Title"] = d.getTitle()
-print("********* Title Scraped *************")
-data["Name"] = d.getName()
-print("********* Name Scraped *************")
-data ['image'] = d.getPhoto()
-print("********* Image scrape **************")
-data["Relevant Review List"] = d.reviewRelevant()
-print("********* Relavant Data Scraped *************")
-
-
-
-with open("review.json",'w') as f:
-    json.dump(data,f)
