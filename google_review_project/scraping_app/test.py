@@ -23,7 +23,13 @@ url = "https://www.google.com/maps/@27.6879306,85.3226581,14z?hl=en&entry=ttu"
 
 class Driver:
     def __init__(self,url):
-        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        ChromeOptions = Options()
+        # ChromeOptions.add_argument('--no-sandbox')
+        ChromeOptions.add_argument('--headless')
+        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=ChromeOptions)
+
+        # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.driver.maximize_window()
         self.driver.get(url)
 
