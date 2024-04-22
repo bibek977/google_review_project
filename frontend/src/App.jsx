@@ -8,8 +8,8 @@ const App = () => {
   return (
     <QueryProvider>
       {/* <Home></Home> */}
-      {/* <SearchCompany></SearchCompany> */}
-      <ConnectCompany></ConnectCompany>
+      <SearchCompany></SearchCompany>
+      {/* <ConnectCompany></ConnectCompany> */}
     </QueryProvider>
   )
 }

@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.search-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+}
+.search-container{
+    /* background-color: green; */
+    height: 30vh;
+    width: 90vw;
+    display: flex;
+    /* align-items: flex-start; */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border: .2rem solid black; */
+    border-radius: 1rem;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+.search-box-container{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: row;
+}
+.search-title{
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* background-color: green; */
+}
+.search-box{
+    /* background-color: blue; */
+    height: 3rem;
+    width: 20rem;
+    margin: 0 .5rem;
+    background: none;
+    appearance: none;
+    border: .2rem solid green;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: .2rem 1rem;
+    /* outline-offset: 1rem; */
+}
+.search-box:focus{
+    border: .2rem solid green;
+}
+.search-btn{
+    border: .2rem solid black;
+    border-radius: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    font-weight: bolder;
+    padding: 0 1rem;
+}
+
+.search-results{
+    /* background-color: blue; */
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 3rem;
+}
+.search-results-box{
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border: .2rem solid black;
+    border-radius: 1rem;
+    align-items: center;
+}
+.results-data-box{
+    /* background-color: green; */
+    /* width: 40%; */
+    padding: 0 1rem;
+}
+.results-title{
+    font-size: 1.4rem;
+    /* background-color: skyblue; */
+}
+.results-reviews-box{
+    /* background-color: antiquewhite; */
+    color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: .6rem;
+    margin-top: .4rem;
+}
+.connect-btn{
+    width: 7rem;
+    height: 3rem;
+    background-color: green;
+    font-size: 1rem;
+    border: .2rem solid black;
+    font-weight: bold;
+    border-radius: 1rem;
+    cursor: pointer;
+}

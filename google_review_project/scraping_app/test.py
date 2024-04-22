@@ -47,7 +47,7 @@ class Driver:
             self.wait.until(EC.presence_of_all_elements_located((By.XPATH,"//div[@role='feed']/div/div/a")))
             search_result = self.driver.find_elements(By.XPATH,"//div[@role='feed']/div/div/a")
 
-            search_results = {}
+            search_results = []
 
             for i in search_result:
                 print(i.get_attribute('aria-label'))
@@ -69,12 +69,13 @@ class Driver:
                 name = i.get_attribute('aria-label')
                 link = i.get_attribute('href')
 
-                search_results[name] = {
+                s = {
                     "name" : name,
                     "href" : link,
                     "rating" : rating,
                     "reviews" : reviews
                 }
+                search_results.append(s)
 
             time.sleep(5)
 
