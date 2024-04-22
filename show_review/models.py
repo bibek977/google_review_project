@@ -13,8 +13,8 @@ class BaseModel(models.Model):
 
 class CompanyName(BaseModel):
     company = models.CharField(max_length=200)
-    rating = models.CharField(max_length=10,blank=True,null=True)
-    reviews = models.CharField(max_length=10,blank=True,null=True)
+    rating = models.CharField(max_length=100,blank=True,null=True)
+    reviews = models.CharField(max_length=100,blank=True,null=True)
     image = models.URLField(blank=True,null=True)
     details = models.TextField()
 

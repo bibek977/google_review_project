@@ -56,7 +56,9 @@ class Company:
             element = self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@aria-label and @role="main"]/div[2]')))
 
             height = self.driver.execute_script('return arguments[0].scrollHeight;', element)
-            while True:
+            scroll_count = 0
+            # while True:
+            while scroll_count < 5:
                 self.driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight;', element)
                 time.sleep(5)
 
@@ -65,6 +67,7 @@ class Company:
                 if height == new_height:
                     break
                 height = new_height
+                scroll_count +=1
 
 
             reviews = self.wait.until(EC.presence_of_all_elements_located((By.XPATH, '//div[@aria-label and @data-review-id]')))
@@ -72,7 +75,11 @@ class Company:
             if reviews is not None:
             
                 review = []
-                for i in reviews:
+                # for i in reviews:
+                max_reviews = min(len(reviews), 10) if len(reviews) > 10 else len(reviews)
+                for n in range(max_reviews):
+                    i = reviews[n]
+
 
                     image = i.find_element(By.XPATH,'div/div/div/button/img').get_attribute('src')
                     name = i.find_element(By.XPATH,'div/div/div[2]/div[2]/div/button/div[1]').text
