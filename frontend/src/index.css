@@ -66,9 +66,12 @@
     /* background-color: blue; */
     height: 100%;
     width: 80%;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     margin: 0 0 0 3rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem 2rem;
 }
 .search-results-box{
     margin-bottom: 2rem;
@@ -79,6 +82,7 @@
     border: .2rem solid black;
     border-radius: 1rem;
     align-items: center;
+    box-shadow: 10px 10px 5px;
 }
 .results-data-box{
     /* background-color: green; */
@@ -98,6 +102,9 @@
     font-size: .6rem;
     margin-top: .4rem;
 }
+.results-reviews-box h1{
+    padding: .2rem;
+}
 .connect-btn{
     width: 7rem;
     height: 3rem;
@@ -108,3 +115,93 @@
     border-radius: 1rem;
     cursor: pointer;
 }
+.disconnect-btn{
+    width: 7rem;
+    height: 3rem;
+    background-color: red;
+    font-size: 1rem;
+    border: .2rem solid black;
+    font-weight: bold;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.tabs {
+    width: 90%;
+    height: 100%;
+    min-height: 400px;
+    margin: 3.5rem auto 1.5rem;
+    padding: 2rem 1rem;
+    border-radius: 2rem;
+    @media (max-width: 769px) {
+      padding: 2rem 0;
+    }
+  
+  }
+  
+  /* Tab Navigation */
+  ul.nav {
+    width: 100%;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+  }
+  ul.nav li {
+    width: 100%;
+    padding: 1rem;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.7s;
+  }
+  ul.nav li:hover {
+    background: wheat;
+  }
+  ul.nav li.active {
+    background: whitesmoke;
+  }
+
+  /* .design-page{
+    background-color: red;
+  } */
+  
+  /* swiper js */
+
+  /* scroll bar */
+  .custom-scrollbar {
+    height: 700px; /* Adjust the height as needed */
+    overflow: auto;
+    /* border: 1px solid #ccc; */
+    position: relative;
+    overflow-x: hidden;
+    background: transparent;
+    scrollbar-color: black black;
+  }
+  
+  
+  
+  .scroll-content {
+    padding: 10px; /* Add padding to create space for the scrollbar */
+  }
+  
+  /* Style the scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Adjust the scrollbar width */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

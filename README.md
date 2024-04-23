@@ -14,3 +14,6 @@ Google Review Project
 4. copy .env.example file
     cp .env.example .env 
 
+5. install node modules
+    cd frontend
+    npm install

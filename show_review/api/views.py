@@ -23,7 +23,7 @@ class ReviewApi(views.APIView):
         review = Reviews.objects.all()
         s = ReviewSerializer(review,many=True)
         review_data = {
-            "comapany" : serializer.data,
+            "company" : serializer.data,
             "reviews" : s.data
         }
         return Response(review_data,status=status.HTTP_202_ACCEPTED)
@@ -83,3 +83,8 @@ class SearchComapanyApi(View):
             }
             return JsonResponse(response,safe=False)
         return JsonResponse(serializer.errors,safe=False)
+
+class DisconnectCompanyApi(View):
+    def get(self,request,*args, **kwargs):
+        CompanyName.objects.all().delete()
+        return JsonResponse({'message':"disconnected"},safe=False)

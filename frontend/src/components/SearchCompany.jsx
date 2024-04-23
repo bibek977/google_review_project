@@ -1,10 +1,14 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SearchCompany = () => {
-
+    const navigate = useNavigate()
     const [searchInput,setSearchInput] = useState({'title':''})
+    const [connectHref,setConnectHref] = useState( {
+        'link' : ""
+    })
     const handleChangeInput = (event) => {
         setSearchInput({ "title": event.target.value });
     };
@@ -13,8 +17,6 @@ const SearchCompany = () => {
         try{
             const response = await axios.post('http://127.0.0.1:8000/search/',searchInput)
             console.log(response.data.results)
-            // console.log(typeof response.data)
-            // console.log(typeof response.data.results)
             return response.data.results
         }
         catch (error) {
@@ -37,9 +39,34 @@ const SearchCompany = () => {
         searchCompanyMutate()
     }
 
-    const handleConnectBtn = (href)=>{
-        console.log(href)
+    const companyConnect = async()=>{
+        try{
+            const response = await axios.post("http://127.0.0.1:8000/connect/",connectHref)
+        console.log(response.data)
+        return response.data
+        }
+        catch(error){
+            throw new Error(error)
+        }
     }
+    const {
+        mutate:postConnectCompany,
+        data : connectCompanyData,
+        isPending : connectCompanyPending,
+        isError : connectCompanyError
+    } = useMutation({
+        mutationKey : ['connectCompany'],
+        mutationFn : companyConnect,
+        onSuccess: ()=>{
+            navigate("/")
+        }
+    })
+
+    const handleConnectBtn = (href)=>{
+        setConnectHref({"link":href})
+        postConnectCompany()
+    }
+
 
 
   return (
@@ -59,8 +86,8 @@ const SearchCompany = () => {
                         <div className="results-data-box">
                             <h1 className="results-title">{e.name}</h1>
                             <div className="results-reviews-box">
-                                <h1>{e.rating}</h1>
-                                <h1>{e.reviews}</h1>
+                                <h1>star: {e.rating}</h1>
+                                <h1>reviews: {e.reviews}</h1>
                             </div>
                         </div>
                         <button className='connect-btn' onClick={()=>handleConnectBtn(e.href)}>Connect</button>

@@ -3,14 +3,14 @@ import QueryProvider from './providers/QueryProvider'
 import Home from './pages/Home'
 import SearchCompany from './components/SearchCompany'
 import ConnectCompany from './components/ConnectCompany'
+import Router from './providers/Router'
 
 const App = () => {
   return (
-    <QueryProvider>
-      {/* <Home></Home> */}
-      <SearchCompany></SearchCompany>
-      {/* <ConnectCompany></ConnectCompany> */}
-    </QueryProvider>
+      <QueryProvider>
+        <Router>
+        </Router>
+      </QueryProvider>
   )
 }
 
