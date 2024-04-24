@@ -1,18 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { Box, Button, Container } from '@mui/material'
 import { SettingContext } from '../providers/SettingsProvider'
+import axios from 'axios'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const FormSettings = () => {
+  const queryClient = useQueryClient()
   const {settings} = useContext(SettingContext)
-  console.log(settings)
+  // console.log(settings.settings_data[0])
+  const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
   
   const [settingsData,setSettingsData] = useState({
-    "align" : "left",
-    "rating" : "5",
-    "theme" : "dark",
-    "ratingText" : true,
-    "reviewName" : true,
-    "reviewDate" : false,
+    "align" : align,
+    "rating" : rating,
+    "theme" : theme,
+    "ratingText" : ratingText,
+    "reviewName" : reviewName,
+    "reviewDate" : reviewDate,
   })
 
   const resetForm = ()=>{
@@ -35,9 +39,28 @@ const FormSettings = () => {
     });
   };
 
+  const postSettings = async()=>{
+    try {
+      const response = await axios.patch("http://127.0.0.1:8000/settings/", settingsData);
+      // Optionally handle success response here
+    } catch (error) {
+      console.error("Error while posting settings:", error);
+      // Handle error gracefully
+    }
+  };
+    const {mutate:mutateSettings} = useMutation({
+      mutationKey:['mutateSettingsKey'],
+      mutationFn: postSettings,
+      onSuccess:()=>{
+        queryClient.invalidateQueries({queryKey:['fetchSettings']})
+      }
+    })
+
+
   const handleFormChange = (event)=>{
     event.preventDefault();
-    console.log(settingsData);
+    // console.log(settingsData);
+    mutateSettings()
   };
 
   return (

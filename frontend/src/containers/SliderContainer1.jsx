@@ -12,9 +12,9 @@ import ReviewCard from '../components/ReviewCard';
 
 const SliderContainer1 = (props) => {
     const {data} = props
-    console.log(data)
+    // console.log(data)
   return (
-    <div>
+    <div className='swiper-main-div'>
 
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
@@ -54,13 +54,6 @@ const SliderContainer1 = (props) => {
     </Swiper>
         <div className='swiper-button-next swiper-next-1'></div>
         <div className='swiper-button-prev swiper-prev-1'></div>
-        <div className="swiper-pagination swiper-pagination-1" >
-            <span className="swiper-pagination-bullet swiper-pagination-bullet-active" ></span>
-            <span className="swiper-pagination-bullet"></span>
-            <span className="swiper-pagination-bullet"></span>
-            <span className="swiper-pagination-bullet"></span>
-            <span className="swiper-pagination-bullet"></span>
-        </div>
     </div>
 
   )

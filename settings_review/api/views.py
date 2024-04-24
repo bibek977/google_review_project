@@ -40,7 +40,7 @@ class SettingsApi(View):
     def get(self,request):
         settings = SettingsPreview.objects.all()
         s = SettingsSerializer(settings,many=True)
-        return JsonResponse({'settings':s.data})
+        return JsonResponse({'settings_data':s.data})
     
     def post(self,request,*args, **kwargs):
         json_data = request.body

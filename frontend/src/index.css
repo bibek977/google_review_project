@@ -171,6 +171,24 @@
   
   /* swiper js */
 
+.swiper-main-div{
+  position: relative;
+}
+.swiper-button-prev{
+  position: relative;
+  color: black;
+  left: -1rem;
+  bottom: 13rem;
+}
+
+.swiper-button-next{
+  position: relative;
+  color: black;
+  left: 67.4rem;
+  bottom: 12rem;
+}
+
+
   /* scroll bar */
   .custom-scrollbar {
     height: 700px; /* Adjust the height as needed */

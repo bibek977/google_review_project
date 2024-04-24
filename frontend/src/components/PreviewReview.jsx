@@ -10,8 +10,8 @@ const PreviewReview = (props) => {
   const getPreviewId = async()=>{
     try{
       const response = await axios.get("http://127.0.0.1:8000/settings/preview/")
-      console.log(response.data.preview_id[0])
-      return response.data[0]
+      // console.log(response.data.preview_id[0])
+      return response.data.preview_id[0]
     }
     catch(error){
       console.log(error)

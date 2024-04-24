@@ -9,12 +9,12 @@ const PreviewTab = (props) => {
   const navigate = useNavigate()
   const {data} = props
   const i = data.company[0]
-  console.log(data)
+  // console.log(data)
 
   const disconnectDataFunction = async () => {
     try {
         const response = await axios.get("http://127.0.0.1:8000/disconnect");
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     } catch (error) {
         throw new Error(error);

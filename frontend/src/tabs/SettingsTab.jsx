@@ -11,9 +11,9 @@ const SettingsTab = (props) => {
         <FormSettings></FormSettings>
 
         <Container sx={{margin:5}}>
-          <Card>
+          {/* <Card> */}
             <PreviewReview data={data}></PreviewReview>
-          </Card>
+          {/* </Card> */}
         </Container>
 
     </div>
