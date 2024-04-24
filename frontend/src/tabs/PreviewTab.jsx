@@ -1,14 +1,15 @@
 import React from 'react'
 import Card from '@mui/material/Card';
-import { Avatar, Button, CardContent, Grid, Typography } from '@mui/material';
+import { Avatar, Button, CardContent, Container, Grid, Typography } from '@mui/material';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import PreviewReview from '../components/PreviewReview';
 
 const PreviewTab = (props) => {
   const navigate = useNavigate()
   const {data} = props
   const i = data.company[0]
-  console.log(i)
+  console.log(data)
 
   const disconnectDataFunction = async () => {
     try {
@@ -18,11 +19,11 @@ const PreviewTab = (props) => {
     } catch (error) {
         throw new Error(error);
     }
-}
-const disconnectData = ()=>{
-    disconnectDataFunction()
-    navigate("/search")
-    }
+  }
+  const disconnectData = ()=>{
+      disconnectDataFunction()
+      navigate("/search")
+      }
   return (
     <div className='preview-tab'>
       <Card>
@@ -46,6 +47,9 @@ const disconnectData = ()=>{
           </CardContent>
         </CardContent>
       </Card>
+      <Container sx={{margin:5}}>
+          <PreviewReview data={data}></PreviewReview>
+      </Container>
     </div>
   )
 }

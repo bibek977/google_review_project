@@ -41,7 +41,8 @@ EXTERNAL_APPS = [
     'corsheaders',
     'rest_framework',
     'show_review',
-    'accounts'
+    'accounts',
+    'settings_review'
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS

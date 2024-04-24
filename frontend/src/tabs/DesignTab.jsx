@@ -10,15 +10,15 @@ const DesignTab = (props) => {
   return (
     <div className='design-page'>
       <Card sx={{backgroundColor:'grey',padding:2,marginBottom:4}}>
-        <CompanyReview data={data}></CompanyReview>
+        <CompanyReview data={data} preview_id = {1}></CompanyReview>
         <SliderContainer1 data={data}></SliderContainer1>
       </Card>
       <Card sx={{backgroundColor:'grey',padding:2,marginBottom:4}}>
-        <CompanyReview data={data}></CompanyReview>
+        <CompanyReview data={data} preview_id = {2}></CompanyReview>
         <SliderContainer2 data={data}></SliderContainer2>
       </Card>
       <Card sx={{backgroundColor:'grey',padding:2,marginBottom:4}}>
-        <SliderContainer3 data={data}></SliderContainer3>
+        <SliderContainer3 data={data} preview_id = {3}></SliderContainer3>
       </Card>
     </div>
   )

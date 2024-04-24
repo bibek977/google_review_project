@@ -4,8 +4,7 @@ import { Box, Drawer, List, ListItem, ListItemButton } from '@mui/material';
 import ReviewCard from '../components/ReviewCard';
 
 const SliderContainer3 = (props) => {
-    const {data} = props
-    console.log(data)
+    const {data,preview_id} = props
     const [open, setOpen] = useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -26,7 +25,7 @@ const SliderContainer3 = (props) => {
     <>
         <div>
             <div onClick={toggleDrawer(true)}>
-            <CompanyReview data={data}></CompanyReview>
+            <CompanyReview data={data} preview_id={preview_id}></CompanyReview>
             </div>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
