@@ -45,7 +45,7 @@ const SliderContainer1 = (props) => {
       }}
     >
         {preview?
-         data.reviews?.map((e,i)=>{
+         data?.map((e,i)=>{
           return(
               <SwiperSlide key={i}>
                   <PreviewCard data={e}></PreviewCard>
@@ -53,7 +53,7 @@ const SliderContainer1 = (props) => {
           )
       })
         :
-        data.reviews?.map((e,i)=>{
+        data?.map((e,i)=>{
             return(
                 <SwiperSlide key={i}>
                     <ReviewCard data={e}></ReviewCard>

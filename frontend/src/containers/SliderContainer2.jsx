@@ -13,7 +13,7 @@ const SliderContainer2 = (props) => {
             <div className='row' >
             {
                 preview?
-                data.reviews?.map((e,i)=>{
+                data?.map((e,i)=>{
                     return(
                     <div className='slider-two' key={i}>
                         <PreviewCard data={e}></PreviewCard>
@@ -22,7 +22,7 @@ const SliderContainer2 = (props) => {
                 })
                 :
                 
-            data.reviews?.map((e,i)=>{
+            data?.map((e,i)=>{
                 return(
                 <div className='slider-two' key={i}>
                     <ReviewCard data={e}></ReviewCard>

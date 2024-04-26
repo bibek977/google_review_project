@@ -15,13 +15,13 @@ const SliderContainer3 = (props) => {
     const DrawerList = (
         <Box sx={{ width: 350, backgroundColor:'gray' }} role="presentation" onClick={toggleDrawer(false)}>
             {preview?
-                        data.reviews?.map((text, index) => (
+                        data?.map((text, index) => (
                             <div key={index}>
                                 <PreviewCard data={text}></PreviewCard>
                             </div>
                         ))
                         :
-            data.reviews?.map((text, index) => (
+            data?.map((text, index) => (
                 <div key={index}>
                     <ReviewCard data={text}></ReviewCard>
                 </div>
