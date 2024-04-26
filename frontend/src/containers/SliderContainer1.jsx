@@ -53,7 +53,7 @@ const SliderContainer1 = (props) => {
           )
       })
         :
-        data?.map((e,i)=>{
+        data.reviews?.map((e,i)=>{
             return(
                 <SwiperSlide key={i}>
                     <ReviewCard data={e}></ReviewCard>

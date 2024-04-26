@@ -21,7 +21,7 @@ const SliderContainer3 = (props) => {
                             </div>
                         ))
                         :
-            data?.map((text, index) => (
+            data.reviews?.map((text, index) => (
                 <div key={index}>
                     <ReviewCard data={text}></ReviewCard>
                 </div>
