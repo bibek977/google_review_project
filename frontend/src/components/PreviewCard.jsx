@@ -4,7 +4,9 @@ import { SettingContext } from '../providers/SettingsProvider'
 
 const PreviewCard = (props) => {
     const {settings} = useContext(SettingContext)
-    const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
+    const { settings_data } = settings || {}
+    // const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
+    const { align, rating, theme, ratingText, reviewDate, reviewName } = (settings_data && settings_data.length > 0) ? settings_data[0] : {};
     const {data} = props
   return (
     <Card sx={{padding:2,margin:2, 

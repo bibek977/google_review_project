@@ -8,7 +8,9 @@ const FormSettings = () => {
   const queryClient = useQueryClient()
   const {settings} = useContext(SettingContext)
   // console.log(settings.settings_data[0])
-  const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
+  const { settings_data } = settings || {}
+  // const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
+  const { align, rating, theme, ratingText, reviewDate, reviewName } = (settings_data && settings_data.length > 0) ? settings_data[0] : {};
   
   const [settingsData,setSettingsData] = useState({
     "align" : align,

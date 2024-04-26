@@ -1,10 +1,27 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const SearchCompany = () => {
     const navigate = useNavigate()
+    const getCompanyData = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/");
+            // console.log(response.data)
+            return response.data;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    const { data: companyData, isError: companyDataError, isLoading: companyDataLoading } = useQuery({
+        queryKey: ['fetchCompanyData'],
+        queryFn: getCompanyData
+    })
+    if (companyData){
+        navigate("/")
+    }
     const [searchInput,setSearchInput] = useState({'title':''})
     const [connectHref,setConnectHref] = useState( {
         'link' : ""
