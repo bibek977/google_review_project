@@ -22,7 +22,7 @@ const FormSettings = () => {
   const resetForm = ()=>{
     setSettingsData({
       "align" : "center",
-      "rating" : "5",
+      "rating" : "1",
       "theme" : "light",
       "ratingText" : false,
       "reviewName" : false,
@@ -86,7 +86,7 @@ const FormSettings = () => {
                   <div>
                     <label htmlFor="selectRating">rating</label>
                     <select id="selectRating" name='rating' value={settingsData.rating} onChange={handleSettingsChange}>
-                      <option value="1">1 star</option>
+                      <option value="1">All star</option>
                       <option value="2">2 star</option>
                       <option value="3">3 star</option>
                       <option value="4">4 star</option>

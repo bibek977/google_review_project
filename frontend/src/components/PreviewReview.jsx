@@ -8,6 +8,7 @@ import { SettingContext } from '../providers/SettingsProvider'
 
 const PreviewReview = (props) => {
   const {settings} = useContext(SettingContext)
+  console.log(settings)
   const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
   const {data} = props
   let newData = data.reviews
@@ -28,7 +29,7 @@ const PreviewReview = (props) => {
     console.log(newData)
   }
   else if(rating==='1'){
-    newData = newData?.filter((item)=>item.rate === "1 stars")
+    newData = newData?.filter((item)=>item.rate !== "all stars")
     console.log(newData)
   }
   const getPreviewId = async()=>{
@@ -50,8 +51,8 @@ const PreviewReview = (props) => {
     <>
     {
       previewIdData?.preview_id === 1 ? <SliderContainer1 data={newData} preview_id = {1} preview="true"></SliderContainer1>
-      : previewIdData?.preview_id === 2 ? <SliderContainer2 data={data} preview_id = {2} preview="true"></SliderContainer2>
-      : previewIdData?.preview_id === 3 ? <SliderContainer3 data={data} preview_id = {3} preview="true"></SliderContainer3>
+      : previewIdData?.preview_id === 2 ? <SliderContainer2 data={newData} preview_id = {2} preview="true"></SliderContainer2>
+      : previewIdData?.preview_id === 3 ? <SliderContainer3 company = {data} data={newData} preview_id = {3} preview="true"></SliderContainer3>
       : <h1>not found ...</h1>
     }
     </>

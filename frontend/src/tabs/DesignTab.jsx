@@ -18,7 +18,7 @@ const DesignTab = (props) => {
         <SliderContainer2 data={data}></SliderContainer2>
       </Card>
       <Card sx={{backgroundColor:'grey',padding:2,marginBottom:4}}>
-        <SliderContainer3 data={data} preview_id = {3}></SliderContainer3>
+        <SliderContainer3 company={data} data={data} preview_id = {3}></SliderContainer3>
       </Card>
     </div>
   )

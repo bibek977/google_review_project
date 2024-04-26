@@ -5,7 +5,8 @@ import ReviewCard from '../components/ReviewCard';
 import PreviewCard from '../components/PreviewCard';
 
 const SliderContainer3 = (props) => {
-    const {data,preview_id,preview} = props
+    const {data,preview_id,preview,company} = props
+    console.log(company)
     const [open, setOpen] = useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -34,7 +35,7 @@ const SliderContainer3 = (props) => {
     <>
         <div>
             <div onClick={toggleDrawer(true)}>
-            <CompanyReview data={data} preview_id={preview_id}></CompanyReview>
+            <CompanyReview data={company} preview_id={preview_id}></CompanyReview>
             </div>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
