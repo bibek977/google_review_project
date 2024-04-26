@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import CompanyReview from '../components/CompanyReview'
 import { Box, Drawer, List, ListItem, ListItemButton } from '@mui/material';
 import ReviewCard from '../components/ReviewCard';
+import PreviewCard from '../components/PreviewCard';
 
 const SliderContainer3 = (props) => {
-    const {data,preview_id} = props
+    const {data,preview_id,preview} = props
     const [open, setOpen] = useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -13,11 +14,19 @@ const SliderContainer3 = (props) => {
 
     const DrawerList = (
         <Box sx={{ width: 350, backgroundColor:'gray' }} role="presentation" onClick={toggleDrawer(false)}>
-            {data.reviews?.map((text, index) => (
+            {preview?
+                        data.reviews?.map((text, index) => (
+                            <div key={index}>
+                                <PreviewCard data={text}></PreviewCard>
+                            </div>
+                        ))
+                        :
+            data.reviews?.map((text, index) => (
                 <div key={index}>
                     <ReviewCard data={text}></ReviewCard>
                 </div>
-            ))}
+            ))
+        }
         </Box>
       );
 

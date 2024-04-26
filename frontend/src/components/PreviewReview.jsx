@@ -25,9 +25,9 @@ const PreviewReview = (props) => {
   return (
     <>
     {
-      previewIdData?.preview_id === 1 ? <SliderContainer1 data={data} preview_id = {1}></SliderContainer1>
-      : previewIdData?.preview_id === 2 ? <SliderContainer2 data={data} preview_id = {2}></SliderContainer2>
-      : previewIdData?.preview_id === 3 ? <SliderContainer3 data={data} preview_id = {3}></SliderContainer3>
+      previewIdData?.preview_id === 1 ? <SliderContainer1 data={data} preview_id = {1} preview="true"></SliderContainer1>
+      : previewIdData?.preview_id === 2 ? <SliderContainer2 data={data} preview_id = {2} preview="true"></SliderContainer2>
+      : previewIdData?.preview_id === 3 ? <SliderContainer3 data={data} preview_id = {3} preview="true"></SliderContainer3>
       : <h1>not found ...</h1>
     }
     </>

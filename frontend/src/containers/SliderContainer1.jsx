@@ -9,9 +9,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ReviewCard from '../components/ReviewCard';
+import PreviewCard from '../components/PreviewCard';
 
 const SliderContainer1 = (props) => {
-    const {data} = props
+    const {data,preview} = props
     // console.log(data)
   return (
     <div className='swiper-main-div'>
@@ -43,7 +44,16 @@ const SliderContainer1 = (props) => {
         },
       }}
     >
-        {data.reviews?.map((e,i)=>{
+        {preview?
+         data.reviews?.map((e,i)=>{
+          return(
+              <SwiperSlide key={i}>
+                  <PreviewCard data={e}></PreviewCard>
+              </SwiperSlide>
+          )
+      })
+        :
+        data.reviews?.map((e,i)=>{
             return(
                 <SwiperSlide key={i}>
                     <ReviewCard data={e}></ReviewCard>
