@@ -5,6 +5,38 @@ import { useNavigate } from 'react-router-dom'
 
 const SearchCompany = () => {
     const navigate = useNavigate()
+
+    const initSettings = {
+        "align" : "center",
+        "rating" : "1",
+        "theme" : "light",
+        "ratingText" : false,
+        "reviewName" : true,
+        "reviewDate" : false,
+      }
+      const postSettings = async()=>{
+        try {
+          const response = await axios.post("http://127.0.0.1:8000/settings/", initSettings);
+          // Optionally handle success response here
+        } catch (error) {
+          console.error("Error while posting settings:", error);
+          // Handle error gracefully
+        }
+      };
+      const initPreviewID = {
+        "preview_id" : 1
+      }
+      const previewID = async()=>{
+        try{
+            const response = await axios.post("http://127.0.0.1:8000/settings/preview/",initPreviewID)
+        console.log(response.data)
+        return response.data
+        }
+        catch(error){
+            throw new Error(error)
+        }
+        }
+      
     const [searchInput,setSearchInput] = useState({'title':''})
     const [connectHref,setConnectHref] = useState( {
         'link' : ""
@@ -64,6 +96,8 @@ const SearchCompany = () => {
 
     const handleConnectBtn = (href)=>{
         setConnectHref({"link":href})
+        previewID()
+        postSettings()
         postConnectCompany()
     }
 

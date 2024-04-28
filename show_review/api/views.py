@@ -15,6 +15,7 @@ from google_review_project.scraping_app.test import *
 from google_review_project.scraping_app.company import Company
 
 import time
+from settings_review.models import *
 
 class ReviewApi(views.APIView):
     def get(self,request):
@@ -87,4 +88,6 @@ class SearchComapanyApi(View):
 class DisconnectCompanyApi(View):
     def get(self,request,*args, **kwargs):
         CompanyName.objects.all().delete()
+        Preview.objects.all().delete()
+        SettingsPreview.objects.all().delete()
         return JsonResponse({'message':"disconnected"},safe=False)

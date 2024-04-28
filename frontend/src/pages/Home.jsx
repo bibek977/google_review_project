@@ -21,11 +21,11 @@ const Home = () => {
         queryFn: getCompanyData
     })
 
-    useEffect(() => {
-        if (!companyData || companyData.company.length === 0) {
-            navigate("/search");
-        }
-    }, [companyData, navigate])
+    // useEffect(() => {
+    //     if (!companyData || companyData.company.length === 0) {
+    //         navigate("/search");
+    //     }
+    // }, [companyData, navigate])
 
     if (companyDataLoading) {
         return <div>Loading...</div>;
@@ -37,7 +37,12 @@ const Home = () => {
 
     return (
         <>
+        {companyData && companyData.company.length !==0 
+        ?
             <MainTab data={companyData}></MainTab>
+        :
+        "no data go to search"
+        }
         </>
     )
 }

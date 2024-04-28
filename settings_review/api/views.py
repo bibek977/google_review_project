@@ -6,6 +6,7 @@ import io
 from rest_framework.parsers import JSONParser
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.db import connection
 
 @method_decorator(csrf_exempt,name='dispatch')
 class PreviewApi(View):
@@ -18,8 +19,11 @@ class PreviewApi(View):
         json_data = request.body
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
+        Preview.objects.all().delete()
+        sequence_name = f"{Preview._meta.db_table}_id_seq"
+        with connection.cursor() as cursor:
+            cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
         serializer = PreviewSerializer(data=python_data)
-
         if serializer.is_valid():
             serializer.save()
 
@@ -46,6 +50,10 @@ class SettingsApi(View):
         json_data = request.body
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
+        SettingsPreview.objects.all().delete()
+        sequence_name = f"{SettingsPreview._meta.db_table}_id_seq"
+        with connection.cursor() as cursor:
+            cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
         serializer = SettingsSerializer(data=python_data)
 
         if serializer.is_valid():
