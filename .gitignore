@@ -1,7 +1,7 @@
 /venv_google_review
 db.sqlite3
 **/__pycache__ 
-.env
+# .env
 maps.json
 review.json
 **/migrations
