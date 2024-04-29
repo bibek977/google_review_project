@@ -63,7 +63,7 @@ const SearchCompany = () => {
   const searchCompany = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/search/",
+        "http://127.0.0.1:8000/api/search/",
         searchInput
       );
       return response.data.results;
@@ -90,7 +90,7 @@ const SearchCompany = () => {
   const companyConnect = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/connect/",
+        "http://127.0.0.1:8000/api/connect/",
         connectHref
       );
       return response.data;

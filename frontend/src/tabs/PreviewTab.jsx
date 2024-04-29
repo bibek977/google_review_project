@@ -19,7 +19,7 @@ const PreviewTab = (props) => {
 
   const disconnectDataFunction = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/disconnect");
+      const response = await axios.get("http://127.0.0.1:8000/api/disconnect/");
       return response.data;
     } catch (error) {
       throw new Error(error);
