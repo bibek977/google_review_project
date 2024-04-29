@@ -136,7 +136,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
@@ -159,3 +160,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         'rest_framework.renderers.JSONRenderer',
 #     ]
 # }
+
+# celery settings 
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_TIMEZONE = "Asia/Kathmandu"
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30 * 60

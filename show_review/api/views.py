@@ -17,6 +17,8 @@ from google_review_project.scraping_app.company import Company
 import time
 from settings_review.models import *
 
+from google_review_project.celery import fetch_review,fetch_review_all,fetch_search_place
+
 class ReviewApi(views.APIView):
     def get(self,request):
         company = CompanyName.objects.all()
@@ -40,7 +42,9 @@ class SearchDataApi(View):
         if serializer.is_valid():
             url = "https://www.google.com/maps/@27.6879306,85.3226581,14z?hl=en&entry=ttu"
             d = Driver(url=url)
-            data = d.get_search(python_data['title'])
+            # data = d.get_search(python_data['title'])
+            title = python_data['title']
+            data = fetch_search_place(d,title)
 
             response = {
                 'results' : data,
@@ -60,26 +64,28 @@ class SearchComapanyApi(View):
         if serializer.is_valid():
             c = Company(url=python_data['link'])
             old_company = CompanyName.objects.filter(company = c.getName()).delete()
-            company_details = {
-                'image' : c.getPhoto(),
-                'company' : c.getName(),
-                'rating' : c.getRating(),
-                'reviews' : c.getReviews(),
-                'details' : c.getOfficeData()
-            }
+            # company_details = {
+            #     'image' : c.getPhoto(),
+            #     'company' : c.getName(),
+            #     'rating' : c.getRating(),
+            #     'reviews' : c.getReviews(),
+            #     'details' : c.getOfficeData()
+            # }
+            company_details = fetch_review(c)
             s = CompanyNameSerializer(data=company_details)
             if s.is_valid():
                 s.save()
             time.sleep(5)
             company_id = CompanyName.objects.get(company = c.getName()).id
-            review_all = c.reviewRelevant(company_id)
+            # review_all = c.reviewRelevant(company_id)
+            review_all = fetch_review_all(c,company_id)
             r = ReviewSerializer(data=review_all,many=True)
             c.quit()
             if r.is_valid():
                 r.save()
             response = {
-                'results' : s.errors,
-                'data' : r.errors,
+                'results' : s.data,
+                'data' : r.data,
                 'status' : status.HTTP_302_FOUND
             }
             return JsonResponse(response,safe=False)
