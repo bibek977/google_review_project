@@ -1,23 +1,19 @@
-import React from 'react'
-import FormSettings from '../components/FormSettings'
-import PreviewReview from '../components/PreviewReview'
-import { Card, Container } from '@mui/material'
+import React from "react";
+import FormSettings from "../components/FormSettings";
+import PreviewReview from "../components/PreviewReview";
+import { Card, Container } from "@mui/material";
 
 const SettingsTab = (props) => {
-  const {data} = props
+  const { data } = props;
   return (
-    <div className='settings-tab'>
+    <div className="settings-tab">
+      <FormSettings></FormSettings>
 
-        <FormSettings></FormSettings>
-
-        <Container sx={{margin:5}}>
-          {/* <Card> */}
-            <PreviewReview data={data}></PreviewReview>
-          {/* </Card> */}
-        </Container>
-
+      <Container sx={{ marginTop: 5 }}>
+        <PreviewReview data={data}></PreviewReview>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default SettingsTab
+export default SettingsTab;

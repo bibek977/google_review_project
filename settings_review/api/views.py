@@ -26,6 +26,7 @@ class PreviewApi(View):
         serializer = PreviewSerializer(data=python_data)
         if serializer.is_valid():
             serializer.save()
+            return JsonResponse({'preview_id':serializer.data})
 
         return JsonResponse({'error':serializer.data})
 
@@ -38,6 +39,7 @@ class PreviewApi(View):
         if s.is_valid():
             s.save()
             return JsonResponse({'messsage': s.data})
+        return JsonResponse({'error':s.data})
 
 @method_decorator(csrf_exempt,name='dispatch')
 class SettingsApi(View):
@@ -58,6 +60,7 @@ class SettingsApi(View):
 
         if serializer.is_valid():
             serializer.save()
+            return JsonResponse({'settings_data':serializer.data})
 
         return JsonResponse({'error':serializer.data})
 
@@ -69,6 +72,7 @@ class SettingsApi(View):
         s = SettingsSerializer(s_id,data=python_data,partial=True)
         if s.is_valid():
             s.save()
-            return JsonResponse({'messsage': s.data})
+            return JsonResponse({'settings_data': s.data})
+        return JsonResponse({'error':s.errors})
 
 

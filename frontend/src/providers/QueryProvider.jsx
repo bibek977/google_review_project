@@ -12,5 +12,9 @@ export default function QueryProvider({ children }) {
     mutationCache: new MutationCache(),
   });
 
-  return <QueryClientProvider client={client}>{children} <ReactQueryDevtools/></QueryClientProvider>;
+  return (
+    <QueryClientProvider client={client}>
+      {children} <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
 }

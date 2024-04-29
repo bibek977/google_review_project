@@ -1,56 +1,58 @@
-import React, { useState } from 'react'
-import PreviewTab from './PreviewTab'
-import SettingsTab from './SettingsTab'
-import DesignTab from './DesignTab'
+import React, { useState } from "react";
+import PreviewTab from "./PreviewTab";
+import SettingsTab from "./SettingsTab";
+import DesignTab from "./DesignTab";
+import { Container } from "@mui/material";
 
 const MainTab = (props) => {
-    const {data} = props
+  const { data } = props;
 
-    const [activeTab,setActiveTab] = useState('tab1')
-    const handleTab1 = () => {
-        setActiveTab("tab1");
-      };
-      const handleTab2 = () => {
-        setActiveTab("tab2");
-      };
-      const handleTab3 = () => {
-        setActiveTab("tab3");
-      };
+  const [activeTab, setActiveTab] = useState("tab1");
+  const handleTab1 = () => {
+    setActiveTab("tab1");
+  };
+  const handleTab2 = () => {
+    setActiveTab("tab2");
+  };
+  const handleTab3 = () => {
+    setActiveTab("tab3");
+  };
 
   return (
-    <div className='tabs'>
+    <Container>
+      <div className="tabs">
         <ul className="nav">
-            <li
+          <li
             className={activeTab === "tab1" ? "active" : ""}
             onClick={handleTab1}
-            >
-                Preview
-            </li>
-            <li
+          >
+            Preview
+          </li>
+          <li
             className={activeTab === "tab2" ? "active" : ""}
             onClick={handleTab2}
-            >
-                Design
-            </li>
-            <li
+          >
+            Design
+          </li>
+          <li
             className={activeTab === "tab3" ? "active" : ""}
             onClick={handleTab3}
-            >
-                Settings
-            </li>
+          >
+            Settings
+          </li>
         </ul>
         <div className="outlet">
-            {activeTab === "tab1" ?
-             <PreviewTab data = {data}></PreviewTab>
-             :
-             activeTab === "tab2" ?
-             <DesignTab data={data}></DesignTab>
-             :
+          {activeTab === "tab1" ? (
+            <PreviewTab data={data}></PreviewTab>
+          ) : activeTab === "tab2" ? (
+            <DesignTab data={data}></DesignTab>
+          ) : (
             <SettingsTab data={data}></SettingsTab>
-            }
+          )}
         </div>
-    </div>
-  )
-}
+      </div>
+    </Container>
+  );
+};
 
-export default MainTab
+export default MainTab;

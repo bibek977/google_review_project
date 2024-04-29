@@ -8,36 +8,28 @@ import { SettingContext } from '../providers/SettingsProvider'
 
 const PreviewReview = (props) => {
   const {settings} = useContext(SettingContext)
-  console.log(settings)
   const { settings_data } = settings || {}
-  // const {align,rating,theme,ratingText,reviewDate,reviewName} = settings.settings_data[0]
   const { align, rating, theme, ratingText, reviewDate, reviewName } = (settings_data && settings_data.length > 0) ? settings_data[0] : {};
   const {data} = props
   let newData = data.reviews
   if(rating==='5'){
     newData = newData?.filter((item)=>item.rate === "5 stars")
-    console.log(newData)
   }
   else if(rating==='4'){
     newData = newData?.filter((item)=>item.rate === "4 stars")
-    console.log(newData)
   }
   else if(rating==='3'){
     newData = newData?.filter((item)=>item.rate === "3 stars")
-    console.log(newData)
   }
   else if(rating==='2'){
     newData = newData?.filter((item)=>item.rate === "2 stars")
-    console.log(newData)
   }
   else if(rating==='1'){
     newData = newData?.filter((item)=>item.rate !== "all stars")
-    console.log(newData)
   }
   const getPreviewId = async()=>{
     try{
       const response = await axios.get("http://127.0.0.1:8000/settings/preview/")
-      // console.log(response.data.preview_id[0])
       return response.data.preview_id[0]
     }
     catch(error){
