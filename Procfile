@@ -1,1 +1,1 @@
-web: gunicorn google_review_project.wsgi --log-file -
+gunicorn --error-logfile /logs/error.log --log-file /logs/access.log google_review_project:app
