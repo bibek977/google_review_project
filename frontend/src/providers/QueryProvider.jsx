@@ -4,7 +4,7 @@ import {
   QueryCache,
   MutationCache,
 } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function QueryProvider({ children }) {
   const client = new QueryClient({
@@ -14,7 +14,8 @@ export default function QueryProvider({ children }) {
 
   return (
     <QueryClientProvider client={client}>
-      {children} <ReactQueryDevtools />
+      {children}
+       {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
   );
 }
