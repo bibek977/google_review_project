@@ -19,6 +19,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
+WORKDIR /google_review_project
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Change directory to frontend and install Node.js dependencies
