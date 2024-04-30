@@ -17,3 +17,15 @@ Google Review Project
 5. install node modules
     cd frontend
     npm install
+
+======= Production==========
+
+6. Create runtime.txt
+    python --version > runtime.txt
+
+7. Create requirements.txt
+    pip freeze > requirements.txt
+
+8. Create Procfile
+
+9. python manage.py collectstatic
