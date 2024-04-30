@@ -5,3 +5,4 @@ db.sqlite3
 maps.json
 review.json
 **/migrations
+Dockerfile
