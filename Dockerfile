@@ -1,12 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM ubuntu:latest
-
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y python python-pip python-dev \
-    && apt-get install -y nodejs npm \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+FROM python:3.9
 
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
@@ -18,6 +11,12 @@ WORKDIR /google_review_project
 
 # Copy the current directory contents into the container at /google_review_project
 COPY . /google_review_project
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y nodejs npm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
