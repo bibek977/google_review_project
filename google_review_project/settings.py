@@ -83,34 +83,41 @@ WSGI_APPLICATION = 'google_review_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DB_DATABASE = os.getenv("DB_DATABASE")
-DB_NAME = os.getenv("DB_NAME")
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_FOREIGNKEY = True
+# DB_DATABASE = os.getenv("DB_DATABASE")
+# DB_NAME = os.getenv("DB_NAME")
+# DB_HOST = os.getenv("DB_HOST")
+# DB_PORT = os.getenv("DB_PORT")
+# DB_USER = os.getenv("DB_USER")
+# DB_PASSWORD = os.getenv("DB_PASSWORD")
+# DB_FOREIGNKEY = True
 
-if DB_DATABASE == "postgres":
-    DATABASES = {
-        'default' : {
-            'ENGINE' : 'django.db.backends.postgresql',
-            'NAME' : DB_NAME,
-            'USER' : DB_USER,
-            'PASSWORD' : DB_PASSWORD,
-            'HOST' : DB_HOST,
-            'PORT' : DB_PORT
+# if DB_DATABASE == "postgres":
+#     DATABASES = {
+#         'default' : {
+#             'ENGINE' : 'django.db.backends.postgresql',
+#             'NAME' : DB_NAME,
+#             'USER' : DB_USER,
+#             'PASSWORD' : DB_PASSWORD,
+#             'HOST' : DB_HOST,
+#             'PORT' : DB_PORT
             
-        }
-    }
+#         }
+#     }
 
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
 
 # Password validation

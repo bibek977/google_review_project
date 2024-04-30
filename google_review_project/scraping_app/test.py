@@ -50,7 +50,7 @@ class Driver:
             search_results = []
 
             for i in search_result:
-                print(i.get_attribute('aria-label'))
+                # print(i.get_attribute('aria-label'))
                 # print(i.get_attribute('href'))
                 # name = i.find_element(By.XPATH,"parent::div/div[2]/div[4]/div/div/div/div[2]/div/div[2]")
                 # print(name.text)
@@ -58,13 +58,13 @@ class Driver:
                     rating = i.find_element(By.XPATH,'parent::div//span[contains(@aria-label,"stars")]/span[1]').text
                 except NoSuchElementException:
                     rating = "Not rated"
-                print(rating)
+                # print(rating)
 
                 try:
                     reviews = i.find_element(By.XPATH,'parent::div//span[contains(@aria-label,"stars")]/span[2]').text
                 except NoSuchElementException:
                     rating = "Not reviewed"
-                print(reviews)
+                # print(reviews)
 
                 name = i.get_attribute('aria-label')
                 link = i.get_attribute('href')

@@ -20,9 +20,12 @@ class PreviewApi(View):
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
         Preview.objects.all().delete()
-        sequence_name = f"{Preview._meta.db_table}_id_seq"
+        # sequence_name = f"{Preview._meta.db_table}_id_seq"
+        # with connection.cursor() as cursor:
+        #     cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
+        sequence_name = Preview._meta.db_table
         with connection.cursor() as cursor:
-            cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
+            cursor.execute(f"DELETE FROM sqlite_sequence WHERE name='{sequence_name}';")
         serializer = PreviewSerializer(data=python_data)
         if serializer.is_valid():
             serializer.save()
@@ -53,9 +56,14 @@ class SettingsApi(View):
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
         SettingsPreview.objects.all().delete()
-        sequence_name = f"{SettingsPreview._meta.db_table}_id_seq"
+        # sequence_name = f"{SettingsPreview._meta.db_table}_id_seq"
+        # with connection.cursor() as cursor:
+        #     cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
+
+        sequence_name = SettingsPreview._meta.db_table
         with connection.cursor() as cursor:
-            cursor.execute(f"ALTER SEQUENCE {sequence_name} RESTART WITH 1;")
+            cursor.execute(f"DELETE FROM sqlite_sequence WHERE name='{sequence_name}';")
+            
         serializer = SettingsSerializer(data=python_data)
 
         if serializer.is_valid():
