@@ -30,7 +30,7 @@ const SearchCompany = () => {
   const postSettings = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/settings/",
+        "https://google-review.up.railway.app/settings/",
         initSettings
       );
     } catch (error) {
@@ -43,7 +43,7 @@ const SearchCompany = () => {
   const previewID = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/settings/preview/",
+        "https://google-review.up.railway.app/preview/",
         initPreviewID
       );
       return response.data;
@@ -63,7 +63,7 @@ const SearchCompany = () => {
   const searchCompany = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/search/",
+        "https://google-review.up.railway.app/api/search/",
         searchInput
       );
       return response.data.results;
@@ -90,7 +90,7 @@ const SearchCompany = () => {
   const companyConnect = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/connect/",
+        "https://google-review.up.railway.app/api/connect/",
         connectHref
       );
       return response.data;

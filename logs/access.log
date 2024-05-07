@@ -15,3 +15,10 @@
 [2024-05-07 14:24:02 +0545] [90521] [INFO] Handling signal: int
 [2024-05-07 14:24:02 +0545] [90522] [INFO] Worker exiting (pid: 90522)
 [2024-05-07 14:24:03 +0545] [90521] [INFO] Shutting down: Master
+[2024-05-07 14:42:46 +0545] [101096] [INFO] Starting gunicorn 22.0.0
+[2024-05-07 14:42:46 +0545] [101096] [INFO] Listening at: http://127.0.0.1:8000 (101096)
+[2024-05-07 14:42:46 +0545] [101096] [INFO] Using worker: sync
+[2024-05-07 14:42:46 +0545] [101127] [INFO] Booting worker with pid: 101127
+[2024-05-07 14:43:13 +0545] [101096] [INFO] Handling signal: int
+[2024-05-07 14:43:14 +0545] [101127] [INFO] Worker exiting (pid: 101127)
+[2024-05-07 14:43:14 +0545] [101096] [INFO] Shutting down: Master

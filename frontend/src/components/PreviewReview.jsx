@@ -29,7 +29,7 @@ const PreviewReview = (props) => {
   }
   const getPreviewId = async()=>{
     try{
-      const response = await axios.get("http://127.0.0.1:8000/settings/preview/")
+      const response = await axios.get("https://google-review.up.railway.app/settings/preview/")
       return response.data.preview_id[0]
     }
     catch(error){

@@ -43,7 +43,7 @@ const FormSettings = () => {
   const postSettings = async () => {
     try {
       const response = await axios.patch(
-        "http://127.0.0.1:8000/settings/",
+        "https://google-review.up.railway.app/settings/",
         settingsData
       );
     } catch (error) {
