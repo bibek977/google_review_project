@@ -43,7 +43,7 @@ const FormSettings = () => {
   const postSettings = async () => {
     try {
       const response = await axios.patch(
-        "https://google-review.up.railway.app/settings/",
+        "https://googlereview.up.railway.app/settings/",
         settingsData
       );
     } catch (error) {

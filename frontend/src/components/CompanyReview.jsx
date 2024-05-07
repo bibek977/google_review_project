@@ -14,7 +14,7 @@ const CompanyReview = (props) => {
   const previewID = async () => {
     try {
       const response = await axios.patch(
-        "https://google-review.up.railway.app/settings/preview/",
+        "https://googlereview.up.railway.app/settings/preview/",
         initPreviewID
       );
       return response.data;

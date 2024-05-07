@@ -10,7 +10,7 @@ const Home = () => {
 
   const getCompanyData = async () => {
     try {
-      const response = await axios.get("https://google-review.up.railway.app/api/");
+      const response = await axios.get("https://googlereview.up.railway.app/api/");
       return response.data;
     } catch (error) {
       throw new Error(error);

@@ -19,7 +19,7 @@ const PreviewTab = (props) => {
 
   const disconnectDataFunction = async () => {
     try {
-      const response = await axios.get("https://google-review.up.railway.app/api/disconnect/");
+      const response = await axios.get("https://googlereview.up.railway.app/api/disconnect/");
       return response.data;
     } catch (error) {
       throw new Error(error);
