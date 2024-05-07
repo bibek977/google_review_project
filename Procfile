@@ -1,1 +1,0 @@
-web: gunicorn google_review_project.wsgi --error-logfile logs/error.log --log-file logs/access.log
