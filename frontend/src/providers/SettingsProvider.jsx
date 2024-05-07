@@ -7,7 +7,7 @@ export const SettingContext = createContext();
 export const SettingsProvider = ({ children }) => {
   const getSettings = async () => {
     try {
-      const response = await axios.get("https://googlereview.up.railway.app/settings/");
+      const response = await axios.get("http://127.0.0.1:8000/settings/");
       return response.data;
     } catch (error) {
       console.log(error);
