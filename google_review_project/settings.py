@@ -170,11 +170,11 @@ STATICFILES_DIRS = [BASE_DIR / 'frontend/dist/']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # To make simple json show render
-# REST_FRAMEWORK = {
-#     'DEFAULT_RENDERER_CLASSES': [
-#         'rest_framework.renderers.JSONRenderer',
-#     ]
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
 
 # celery settings 
 
