@@ -29,3 +29,6 @@ Google Review Project
 8. Create Procfile
 
 9. python manage.py collectstatic
+
+10.procfile 
+    web: gunicorn google_review_project.wsgi --error-logfile logs/error.log --log-file logs/access.log
