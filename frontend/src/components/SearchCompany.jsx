@@ -63,7 +63,7 @@ const SearchCompany = () => {
   const searchCompany = async () => {
     try {
       const response = await axios.post(
-        "https://googlereview.up.railway.app/api/search/",
+        "http://127.0.0.1:8000/api/search/",
         searchInput
       );
       return response.data.results;
