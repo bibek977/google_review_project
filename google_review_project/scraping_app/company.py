@@ -10,9 +10,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 
-# for server chrome automation
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
 import time
 import json
 
@@ -31,12 +28,8 @@ class Company:
         # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=ChromeOptions)
         # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
-        # for production server
-         # Set desired capabilities for Chrome
-        desired_capabilities = DesiredCapabilities.CHROME
-        
         # Create a Remote WebDriver instance with the URL of your deployed Selenium server
-        driver = webdriver.Remote(command_executor="https://standalone-chrome-production-4823.up.railway.app/", desired_capabilities=desired_capabilities, options=ChromeOptions)
+        driver = webdriver.Remote(command_executor="https://standalone-chrome-production-4823.up.railway.app/",options=ChromeOptions)
 
         self.driver.maximize_window()
         self.driver.get(url)
