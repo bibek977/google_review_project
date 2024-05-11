@@ -178,8 +178,8 @@ REST_FRAMEWORK = {
 
 # celery settings 
 
-# CELERY_BROKER_URL = 'redis://monorail.proxy.rlwy.net:36170/0'
-CELERY_BROKER_URL = os.getenv('REDISHOST','redis://127.0.0.1:6379/0')
+CELERY_BROKER_URL = 'redis://monorail.proxy.rlwy.net:36170/0'
+# CELERY_BROKER_URL = os.getenv('REDISHOST','redis://127.0.0.1:6379/0')
 CELERY_TIMEZONE = "Asia/Kathmandu"
 # CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 30 * 60
