@@ -29,7 +29,7 @@ class Company:
         # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
         # Create a Remote WebDriver instance with the URL of your deployed Selenium server
-        driver = webdriver.Remote(command_executor="https://standalone-chrome-production-4823.up.railway.app/",options=ChromeOptions)
+        self.driver = webdriver.Remote(command_executor="https://standalone-chrome-production-4823.up.railway.app/",options=ChromeOptions)
 
         self.driver.maximize_window()
         self.driver.get(url)
