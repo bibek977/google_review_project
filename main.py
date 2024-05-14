@@ -89,11 +89,13 @@ class Driver:
                 search_results.append(s)
 
             time.sleep(5)
+            self.driver.quit()
 
             return search_results
 
         except Exception as e:
             print(e)
+            self.driver.quit()
 
 d = Driver(url=url)
 e = d.get_search("nabil bank")

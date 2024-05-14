@@ -87,15 +87,17 @@ class Driver:
                 }
                 search_results.append(s)
 
-            time.sleep(5)
+            # time.sleep(5)
 
             # return search_results
-            with open("maps.json","w") as f:
-                json.dump(search_results,f)
+            # with open("maps.json","w") as f:
+            #     json.dump(search_results,f)
+            self.driver.quit()
             return search_results
 
         except Exception as e:
             print(e)
+            self.driver.quit()
 
 # maps = {}
 

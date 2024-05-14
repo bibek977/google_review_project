@@ -193,10 +193,13 @@ class Company:
             # self.company_details['details'] = info_list
             # return self.company_details
 
+            self.driver.quit()
             return info_list
+            
 
         except Exception as e:
             print(e)
+            self.driver.quit()
 
     def quit(self):
 
