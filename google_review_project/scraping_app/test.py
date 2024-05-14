@@ -25,16 +25,22 @@ class Driver:
     def __init__(self,url):
 
         ChromeOptions = Options()
-        # ChromeOptions.add_argument('--no-sandbox')
         ChromeOptions.add_argument('--headless')
+        ChromeOptions.add_argument('--disable-gpu')
+        ChromeOptions.add_argument('--no-sandbox')
+        ChromeOptions.add_argument('--disable-dev-shm-usage')
 
         # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=ChromeOptions)
         # self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         
         # Create a Remote WebDriver instance with the URL of your deployed Selenium server
-        self.driver = webdriver.Remote(command_executor="http://172.17.3.48:4444",options=ChromeOptions)
+        self.driver = webdriver.Remote(
+            command_executor="https://standalone-chrome-production-6657.up.railway.app",
+            options=ChromeOptions
+        )
 
-        self.driver.maximize_window()
+        # self.driver.maximize_window()
+        
         self.driver.get(url)
 
         self.wait = WebDriverWait(self.driver,30)
