@@ -63,7 +63,8 @@ class SearchComapanyApi(View):
 
         if serializer.is_valid():
             c = Company(url=python_data['link'])
-            old_company = CompanyName.objects.filter(company = c.getName()).delete()
+            name = c.getName()
+            old_company = CompanyName.objects.filter(company = name).delete()
             # company_details = {
             #     'image' : c.getPhoto(),
             #     'company' : c.getName(),
@@ -76,7 +77,7 @@ class SearchComapanyApi(View):
             if s.is_valid():
                 s.save()
             time.sleep(5)
-            company_id = CompanyName.objects.get(company = c.getName()).id
+            company_id = CompanyName.objects.get(company = name).id
             # review_all = c.reviewRelevant(company_id)
             review_all = fetch_review_all(c,company_id)
             r = ReviewSerializer(data=review_all,many=True)
@@ -84,8 +85,8 @@ class SearchComapanyApi(View):
             if r.is_valid():
                 r.save()
             response = {
-                'results' : s.data,
-                'data' : r.data,
+                'results' : s.errors,
+                'data' : r.errors,
                 'status' : status.HTTP_302_FOUND
             }
             return JsonResponse(response,safe=False)

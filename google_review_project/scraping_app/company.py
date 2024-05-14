@@ -103,9 +103,10 @@ class Company:
                     review.append(r)
                 self.driver.back()
                 return review
-            print("no reviews")
-            self.driver.back()
-            return None
+            else:
+                name = "no reviews"
+                self.driver.back()
+                return name
         
 
         except Exception as e:
