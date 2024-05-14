@@ -35,7 +35,7 @@ class Driver:
         
         # Create a Remote WebDriver instance with the URL of your deployed Selenium server
         self.driver = webdriver.Remote(
-            command_executor="https://standalone-chrome-production-6657.up.railway.app",
+            command_executor="https://standalone-chrome-production-6657.up.railway.app/wd/hub",
             options=ChromeOptions
         )
 
