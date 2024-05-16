@@ -69,7 +69,7 @@ class SearchComapanyApi(View):
             s = CompanyNameSerializer(data=company_details)
             if s.is_valid():
                 s.save()
-            time.sleep(5)
+            time.sleep(10)
             response = {
                 'results' : s.errors,
                 'status' : status.HTTP_302_FOUND

@@ -101,11 +101,13 @@ class Company:
 
                     r = {"name":name,"profile_pic" :  image, "rate" : stars, "date" : date, "review" :  desc, "company" : company_id}
                     review.append(r)
-                self.driver.back()
+                # self.driver.back()
+                self.driver.quit()
                 return review
             else:
                 name = "no reviews"
                 self.driver.back()
+                self.driver.quit()
                 return name
         
 
@@ -193,7 +195,7 @@ class Company:
 
             # self.company_details['details'] = info_list
             # return self.company_details
-
+            self.driver.quit()
             return info_list
 
         except Exception as e:
