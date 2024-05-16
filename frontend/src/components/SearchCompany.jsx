@@ -98,6 +98,15 @@ const SearchCompany = () => {
       throw new Error(error);
     }
   };
+  const reviewConnect = async () => {
+    try {
+      const response = await axios.post("https://googlereview.up.railway.app/api/connect/review/", connectHref);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
   const {
     mutate: postConnectCompany,
     data: connectCompanyData,
@@ -106,6 +115,15 @@ const SearchCompany = () => {
   } = useMutation({
     mutationKey: ["connectCompany"],
     mutationFn: companyConnect,
+  });
+  const {
+    mutate: postConnectReview,
+    data: connectReviewData,
+    isPending: connectReviewPending,
+    isError: connectReviewError,
+  } = useMutation({
+    mutationKey: ["connectReview"],
+    mutationFn: reviewConnect,
     onSuccess: () => {
       navigate("/");
     },
@@ -116,6 +134,7 @@ const SearchCompany = () => {
     previewID();
     postSettings();
     postConnectCompany();
+    postConnectReview();
   };
 
   return (
