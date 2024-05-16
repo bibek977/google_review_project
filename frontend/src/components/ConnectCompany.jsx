@@ -5,7 +5,18 @@ import React from "react";
 const ConnectCompany = () => {
   const companyConnect = async () => {
     try {
-      const response = await axios.post("https://googlereview.up.railway.app/api/connect/", {
+      const response = await axios.post("http://127.0.0.1:8000/api/connect/", {
+        link: "https://www.google.com/maps/place/KKFC/data=!4m7!3m6!1s0x39eb1900b656e389:0xc1571227b125368!8m2!3d27.6693444!4d85.3222281!16s%2Fg%2F11gy1p16x0!19sChIJieNWtgAZ6zkRaFMSeyJxFQw?authuser=0&hl=en&rclk=1",
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  const reviewConnect = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/connect/review/", {
         link: "https://www.google.com/maps/place/KKFC/data=!4m7!3m6!1s0x39eb1900b656e389:0xc1571227b125368!8m2!3d27.6693444!4d85.3222281!16s%2Fg%2F11gy1p16x0!19sChIJieNWtgAZ6zkRaFMSeyJxFQw?authuser=0&hl=en&rclk=1",
       });
       console.log(response.data);
@@ -23,8 +34,20 @@ const ConnectCompany = () => {
     mutationKey: ["connectCompany"],
     mutationFn: companyConnect,
   });
+
+  const {
+    mutate: postConnectReview,
+    data: connectReviewData,
+    isPending: connectReviewPending,
+    isError: connectReviewError,
+  } = useMutation({
+    mutationKey: ["connectReview"],
+    mutationFn: reviewConnect,
+  });
+
   const connectCompany = async () => {
-    await postConnectCompany();
+    postConnectCompany();
+    postConnectReview();
   };
 
   return (

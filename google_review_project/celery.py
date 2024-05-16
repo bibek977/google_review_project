@@ -23,12 +23,13 @@ def fetch_review(c):
     'reviews' : c.getReviews(),
     'details' : c.getOfficeData()
     }
-
+    c.quit()
     return company_details
 
 @shared_task
 def fetch_review_all(c,company_id):
     r = c.reviewRelevant(company_id)
+    c.quit()
     return r
 
 @shared_task
